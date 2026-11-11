@@ -415,13 +415,23 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 16px;
       }
+      #chapterTwoGallery {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
       .photo {
+        display: block;
+        width: 100%;
+        padding: 0;
         aspect-ratio: 4/5;
         border-radius: 16px;
         overflow: hidden;
         background: linear-gradient(145deg, #343b5a, #805e73);
         position: relative;
         border: 1px solid #ffffff20;
+        color: inherit;
+        font: inherit;
+        text-align: left;
+        cursor: zoom-in;
       }
       .photo img {
         width: 100%;
@@ -619,12 +629,6 @@
       .polaroid-image-missing .polaroid-placeholder {
         display: grid;
       }
-      .polaroid-caption {
-        display: block;
-        margin-top: 12px;
-        font: italic 18px/1.2 "Cormorant Garamond", serif;
-        text-align: center;
-      }
       @keyframes polaroidDrop {
         from {
           opacity: 0;
@@ -763,9 +767,6 @@
         gap: 14px;
         max-width: 900px;
         margin: 0 auto;
-      }
-      .game-question-card[data-question="7"] {
-        grid-column: 2;
       }
       .game-question-card {
         position: relative;
@@ -1001,20 +1002,65 @@
         letter-spacing: 0.18em;
         text-shadow: 0 0 24px #e9b9ca44;
       }
-      .game-blur-photo {
-        width: 100%;
-        max-width: 250px;
-        aspect-ratio: 4/5;
-        margin: 20px auto;
-        border-radius: 12px;
-        background: linear-gradient(145deg, #343b5a, #805e73);
-        filter: blur(18px);
-        transition: filter 1.5s ease;
-        overflow: hidden;
-        border: 1px solid #ffffff20;
+      .dream-responses {
+        max-width: 900px;
+        margin: 56px auto 0;
+        padding: clamp(20px, 4vw, 36px);
+        border: 1px solid #e9b9ca44;
+        border-radius: 22px;
+        background: #ffffff08;
       }
-      .game-blur-photo.revealed {
-        filter: blur(0);
+      .dream-responses h3 {
+        margin: 0;
+        color: var(--pink);
+        font: 500 34px "Cormorant Garamond", serif;
+        text-align: center;
+      }
+      .dream-responses-intro,
+      .dream-responses-status {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+        text-align: center;
+      }
+      .dream-response-list {
+        display: grid;
+        gap: 18px;
+        margin-top: 24px;
+      }
+      .dream-response-card {
+        padding: 20px;
+        border: 1px solid #ffffff1a;
+        border-radius: 16px;
+        background: #10172d88;
+      }
+      .dream-response-card h4 {
+        margin: 0 0 16px;
+        color: var(--gold);
+        font: 500 20px "Cormorant Garamond", serif;
+      }
+      .dream-response-answers {
+        display: grid;
+        gap: 14px;
+      }
+      .dream-response-answer {
+        padding-top: 12px;
+        border-top: 1px solid #ffffff12;
+      }
+      .dream-response-answer dt {
+        margin-bottom: 5px;
+        color: var(--pink);
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.6;
+      }
+      .dream-response-answer dd {
+        margin: 0;
+        color: var(--cream);
+        font-size: 13px;
+        line-height: 1.75;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
       }
       .hidden-message-box {
         background: #0d1224;
@@ -1084,8 +1130,8 @@
         .reasons {
           grid-template-columns: repeat(2, 1fr);
         }
-        .photo:last-child:nth-child(odd) {
-          display: none;
+        #chapterTwoGallery {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
         .intro-card {
           padding: 25px;
@@ -1106,11 +1152,6 @@
         .game-question-grid {
           grid-template-columns: 1fr;
         }
-        .game-question-card[data-question="7"] {
-          grid-column: 1;
-          justify-self: center;
-          width: min(100%, 430px);
-        }
         .game-question-card {
           min-height: auto;
         }
@@ -1124,10 +1165,6 @@
         }
         .polaroid {
           padding: 7px 7px 12px;
-        }
-        .polaroid-caption {
-          margin-top: 9px;
-          font-size: 15px;
         }
         .polaroid-gallery h3 {
           font-size: 31px;
@@ -1248,6 +1285,9 @@
         line-height: 1.8;
         margin: 0 0 22px;
       }
+      .memory-description:empty {
+        display: none;
+      }
       .memory-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -1306,12 +1346,6 @@
         font: 10px "DM Sans";
         opacity: 0.7;
         margin-top: 7px;
-      }
-      .memory-hint {
-        color: #9294a9;
-        font-size: 10px;
-        line-height: 1.7;
-        margin-top: 18px;
       }
       @media (max-width: 600px) {
         .memory-panel {
@@ -1395,57 +1429,6 @@
         menyelaraskan langkah, tumbuh, dan saling memilih.”
       </div>
       <div class="timeline" style="margin-top: 55px">
-        <article
-          class="moment"
-          role="button"
-          tabindex="0"
-          aria-label="Buka kenangan 03 Agustus 2026"
-          data-memory="start"
-        >
-          <i class="dot"></i>
-          <span class="date-trigger">
-            03 Agustus 2026
-          </span>
-          <h3>The day our story began</h3>
-          <p>
-            Hari ketika kita memulai cerita yang semoga akan terus punya banyak
-            halaman berikutnya.
-          </p>
-        </article>
-        <article
-          class="moment"
-          role="button"
-          tabindex="0"
-          aria-label="Buka kumpulan kenangan sehari-hari"
-          data-memory="moments"
-        >
-          <i class="dot"></i>
-          <span class="date-trigger">
-            A collection of little moments
-          </span>
-          <h3>Our ordinary days</h3>
-          <p>
-            Tawa, obrolan panjang, cerita random, dan hal-hal sederhana yang
-            ternyata menjadi favoritku.
-          </p>
-        </article>
-        <article
-          class="moment"
-          role="button"
-          tabindex="0"
-          aria-label="Buka kenangan hari ini"
-          data-memory="today"
-        >
-          <i class="dot"></i>
-          <span class="date-trigger">
-            Today &amp; always
-          </span>
-          <h3>Still choosing you</h3>
-          <p>
-            Hari ini kita merayakan kamu. Besok, semoga kita masih saling
-            mendukung untuk menjadi versi terbaik diri masing-masing.
-          </p>
-        </article>
       </div>
     </section>
     <section id="memories">
@@ -1453,27 +1436,11 @@
         <small>Chapter two</small>
         <h2>Moments I Keep</h2>
         <p>
-          Ganti kotak-kotak ini dengan foto favorit kalian. Setiap foto punya
-          ceritanya sendiri.
+          Sedikit foto yang menjadi favorit, baik di momennya maupun spesialnya
+          foto tersebut.
         </p>
       </div>
-      <div class="gallery">
-        <div class="photo">
-          <div class="placeholder">
-            Our first favorite memory<small>Foto belum ditambahkan</small>
-          </div>
-        </div>
-        <div class="photo">
-          <div class="placeholder">
-            A day to remember<small>Foto belum ditambahkan</small>
-          </div>
-        </div>
-        <div class="photo">
-          <div class="placeholder">
-            My favorite smile<small>Foto belum ditambahkan</small>
-          </div>
-        </div>
-      </div>
+      <div class="gallery" id="chapterTwoGallery"></div>
     </section>
     <section id="reasons">
       <div class="section-head">
@@ -1525,7 +1492,7 @@
 
       <div class="game-progress" aria-live="polite">
         <div class="game-progress-label">
-          <span id="gameProgressText">0 dari 13 jawaban benar</span>
+          <span id="gameProgressText">0 dari 12 jawaban benar</span>
           <span id="gameProgressPercent">0%</span>
         </div>
         <div
@@ -1561,8 +1528,8 @@
             data-question="2"
             onclick="openQuestion(2)"
           >
-            <strong>02 · Tebak Gambar</strong>
-            <span>Buka gambar kenangan untuk menyelesaikan tantangan ini.</span>
+            <strong>02 · Pesan Tersembunyi</strong>
+            <span>Temukan simbol hati yang tersembunyi di dalam kotak.</span>
             <span class="game-card-percent" id="questionPercent2"
               >0% · Belum dijawab</span
             >
@@ -1573,8 +1540,8 @@
             data-question="3"
             onclick="openQuestion(3)"
           >
-            <strong>03 · Pesan Tersembunyi</strong>
-            <span>Temukan simbol hati yang tersembunyi di dalam kotak.</span>
+            <strong>03 · Seberapa Kenal?</strong>
+            <span>Uji ingatanmu tentang kebiasaan kecil kita.</span>
             <span class="game-card-percent" id="questionPercent3"
               >0% · Belum dijawab</span
             >
@@ -1585,8 +1552,8 @@
             data-question="4"
             onclick="openQuestion(4)"
           >
-            <strong>04 · Seberapa Kenal?</strong>
-            <span>Uji ingatanmu tentang kebiasaan kecil kita.</span>
+            <strong>04 · Susun Kata</strong>
+            <span>Susun huruf acak menjadi panggilan kesayangan.</span>
             <span class="game-card-percent" id="questionPercent4"
               >0% · Belum dijawab</span
             >
@@ -1597,8 +1564,8 @@
             data-question="5"
             onclick="openQuestion(5)"
           >
-            <strong>05 · Susun Kata</strong>
-            <span>Susun huruf acak menjadi panggilan kesayangan.</span>
+            <strong>05 · Pilih Salah Satu</strong>
+            <span>Pilih hal yang paling menggambarkan seleraku.</span>
             <span class="game-card-percent" id="questionPercent5"
               >0% · Belum dijawab</span
             >
@@ -1609,22 +1576,10 @@
             data-question="6"
             onclick="openQuestion(6)"
           >
-            <strong>06 · Pilih Salah Satu</strong>
-            <span>Pilih hal yang paling menggambarkan seleraku.</span>
-            <span class="game-card-percent" id="questionPercent6"
-              >0% · Belum dijawab</span
-            >
-          </button>
-          <button
-            class="game-question-card"
-            type="button"
-            data-question="7"
-            onclick="openQuestion(7)"
-          >
-            <strong>07 · Impian & Harapan</strong>
+            <strong>06 · Impian & Harapan</strong>
             <span>Ceritakan harapan, tempat, dan hal yang ingin kamu wujudkan.</span>
-            <span class="game-card-percent" id="questionPercent7"
-              >Terkunci · Selesaikan tantangan 1–6</span
+            <span class="game-card-percent" id="questionPercent6"
+              >Terkunci · Selesaikan tantangan 1–5</span
             >
           </button>
         </div>
@@ -1656,7 +1611,7 @@
         <p class="game-feedback" id="memoryFeedback" aria-live="polite"></p>
       </div>
 
-      <!-- Level 2: Tebak Foto -->
+      <!-- Level 2: Pesan Tersembunyi -->
       <div class="game-level" id="level-2" hidden>
         <button
           class="game-question-back"
@@ -1665,39 +1620,7 @@
         >
           ← Pilih pertanyaan lain
         </button>
-        <h3>Level 2: Tebak Gambar</h3>
-        <p>Coba tebak, momen indah apa di balik gambar ini?</p>
-        <div class="game-blur-photo" id="blurPhoto">
-          <!-- Ganti img src dengan path fotomu nanti -->
-          <div
-            style="
-              display: grid;
-              place-items: center;
-              height: 100%;
-              color: var(--cream);
-              font-size: 22px;
-              font-family: 'Cormorant Garamond';
-              padding: 20px;
-            "
-          >
-            Our Beautiful Memory<br /><small>♡</small>
-          </div>
-        </div>
-        <button class="cta" id="btnReveal" onclick="revealPhoto()">
-          Buka Foto
-        </button>
-      </div>
-
-      <!-- Level 3: Pesan Tersembunyi -->
-      <div class="game-level" id="level-3" hidden>
-        <button
-          class="game-question-back"
-          type="button"
-          onclick="showQuestionPicker()"
-        >
-          ← Pilih pertanyaan lain
-        </button>
-        <h3>Level 3: Pesan Tersembunyi</h3>
+        <h3>Level 2: Pesan Tersembunyi</h3>
         <p>
           Cari dan sentuh simbol hati (♡) yang tak kasat mata di dalam kotak
           gelap ini.<br /><small style="color: var(--muted)"
@@ -1709,8 +1632,8 @@
         </div>
       </div>
 
-      <!-- Level 4: Kuis Trivia -->
-      <div class="game-level" id="level-4" hidden>
+      <!-- Level 3: Kuis Trivia -->
+      <div class="game-level" id="level-3" hidden>
         <button
           class="game-question-back"
           type="button"
@@ -1718,7 +1641,7 @@
         >
           ← Pilih tantangan lain
         </button>
-        <h3>Level 4: Seberapa Kenal?</h3>
+        <h3>Level 3: Seberapa Kenal?</h3>
         <small id="triviaQuestionCounter" style="color: var(--gold)"></small>
         <p id="triviaQuestionText"></p>
         <div
@@ -1730,8 +1653,8 @@
         <p class="game-feedback" id="triviaFeedback" aria-live="polite"></p>
       </div>
 
-      <!-- Level 5: Susun Kata -->
-      <div class="game-level" id="level-5" hidden>
+      <!-- Level 4: Susun Kata -->
+      <div class="game-level" id="level-4" hidden>
         <button
           class="game-question-back"
           type="button"
@@ -1739,7 +1662,7 @@
         >
           ← Pilih tantangan lain
         </button>
-        <h3>Level 5: Susun Kata</h3>
+        <h3>Level 4: Susun Kata</h3>
         <small id="anagramQuestionCounter" style="color: var(--gold)"></small>
         <p id="anagramQuestionText"></p>
         <div
@@ -1764,8 +1687,8 @@
         <p class="game-feedback" id="anagramFeedback" aria-live="polite"></p>
       </div>
 
-      <!-- Level 6: Pilih Salah Satu -->
-      <div class="game-level" id="level-6" hidden>
+      <!-- Level 5: Pilih Salah Satu -->
+      <div class="game-level" id="level-5" hidden>
         <button
           class="game-question-back"
           type="button"
@@ -1773,7 +1696,7 @@
         >
           ← Pilih tantangan lain
         </button>
-        <h3>Level 6: Pilih Salah Satu</h3>
+        <h3>Level 5: Pilih Salah Satu</h3>
         <small id="thisOrThatCounter" style="color: var(--gold)"></small>
         <p id="thisOrThatPrompt"></p>
         <div
@@ -1785,8 +1708,8 @@
         <p class="game-feedback" id="thisOrThatFeedback" aria-live="polite"></p>
       </div>
 
-      <!-- Level 7: Impian & Harapan -->
-      <div class="game-level" id="level-7" hidden>
+      <!-- Level 6: Impian & Harapan -->
+      <div class="game-level" id="level-6" hidden>
         <button
           class="game-question-back"
           type="button"
@@ -1794,7 +1717,7 @@
         >
           ← Pilih tantangan lain
         </button>
-        <h3>Level 7: Impian & Harapan ♡</h3>
+        <h3>Level 6: Impian & Harapan ♡</h3>
         <p>
           Aku ingin tahu hal-hal yang kamu impikan. Jawabanmu akan dikirim
           pribadi ke spreadsheet kita.
@@ -1906,7 +1829,7 @@
       </div>
 
       <!-- Hadiah -->
-      <div class="game-level" id="level-8" hidden>
+      <div class="game-level" id="level-7" hidden>
         <h3>Semua Tantangan Selesai!</h3>
         <p>Ketuk kotak hadiah di bawah ini untuk melihat kejutan terakhirmu.</p>
         <button class="gift-box-btn" onclick="openGiftBox()">🎁</button>
@@ -1985,11 +1908,22 @@
       </div>
       <div class="polaroid-gallery" id="polaroidGallery" hidden>
         <h3>Our Little Memories ♡</h3>
-        <p>
-          Klik foto untuk melihatnya lebih besar. Letakkan foto kalian di folder
-          <b>assets/memories/</b> dengan nama file yang tertera pada kartu.
-        </p>
+        <p>Klik foto mana saja untuk melihatnya lebih besar.</p>
         <div class="polaroid-grid" id="polaroidGrid"></div>
+      </div>
+      <div class="dream-responses" id="dreamResponses">
+        <h3>Harapan dan Doa Kita ♡</h3>
+        <p class="dream-responses-intro">
+          Semua jawaban Level 6 ditampilkan di halaman publik ini.
+        </p>
+        <p
+          class="dream-responses-status"
+          id="dreamResponsesStatus"
+          aria-live="polite"
+        >
+          Jawaban akan dimuat saat kejutan dibuka.
+        </p>
+        <div class="dream-response-list" id="dreamResponseList"></div>
       </div>
     </section>
 
@@ -2039,10 +1973,6 @@
       </div>
       <p class="memory-description" id="memoryDescription"></p>
       <div class="memory-grid" id="memoryGrid"></div>
-      <p class="memory-hint">
-        Ganti foto contoh dengan foto kalian sendiri melalui folder
-        <b>assets/memories/</b>.
-      </p>
     </dialog>
 
     <footer>MADE WITH <span>♡</span>, JUST FOR YOU · RAFLI HADA SETIAWAN ♡</footer>
@@ -2141,6 +2071,7 @@
           image.src = image.dataset.src;
           image.removeAttribute("data-src");
         });
+        loadDreamResponses();
         confetti();
       }
 
@@ -2151,7 +2082,6 @@
       const answeredQuestionSteps = new Set();
       const questionKeys = [
         "memory",
-        "photo",
         "heart",
         "trivia",
         "anagram",
@@ -2283,7 +2213,7 @@
             complete
               ? "100% · Sudah dijawab benar"
               : !prerequisitesComplete
-                ? "Terkunci · Selesaikan tantangan 1–6"
+                ? "Terkunci · Selesaikan tantangan 1–5"
               : answeredForQuestion
                 ? `${questionPercent}% · ${answeredForQuestion}/${totalForQuestion} benar`
                 : "0% · Belum dijawab";
@@ -2310,9 +2240,9 @@
         const level = document.getElementById(`level-${num}`);
         level.hidden = false;
         level.classList.add("active");
-        if (num === 4) renderTriviaQuestion();
-        if (num === 5) renderAnagramQuestion();
-        if (num === 6) renderThisOrThatQuestion();
+        if (num === 3) renderTriviaQuestion();
+        if (num === 4) renderAnagramQuestion();
+        if (num === 5) renderThisOrThatQuestion();
       }
 
       async function submitDreams(event) {
@@ -2450,7 +2380,7 @@
             level.classList.remove("active");
             level.hidden = true;
           });
-          const reward = document.getElementById("level-8");
+          const reward = document.getElementById("level-7");
           reward.hidden = false;
           reward.classList.add("active");
         } else {
@@ -2476,12 +2406,6 @@
           feedback.textContent =
             "Jawaban belum tepat. Coba lagi sampai benar ya ♡";
         }
-      }
-
-      function revealPhoto() {
-        document.getElementById("blurPhoto").classList.add("revealed");
-        document.getElementById("btnReveal").style.display = "none";
-        completeQuestion("photo");
       }
 
       function normalizeGameAnswer(answer) {
@@ -2628,56 +2552,172 @@
       /* ------------------------ */
 
       // Data foto timeline
-      const memorySets = {
-        start: {
-          title: "The day our story began",
+      const memorySets = {};
+
+      const chapterOnePhotoGroups = [
+        {
+          key: "kalitalang",
+          title: "Kalitalang",
+          date: "14 Juni 2026",
+          description: "Potongan kenangan perjalanan kita di Kalitalang.",
+          files: [
+            "Kalitalang 1.JPG",
+            "Kalitalang 2.JPG",
+            "Kalitalang 3.JPG",
+            "Kalitalang 4.JPG",
+          ],
+        },
+        {
+          key: "patrobayan",
+          title: "Patrobayan",
+          date: "26 Juni 2026",
+          description: "Potongan kenangan perjalanan kita di Patrobayan.",
+          files: [
+            "Patrobayan 1.JPG",
+            "Patrobayan 2.JPG",
+            "Patrobayan 3.JPG",
+          ],
+        },
+        {
+          key: "klotok",
+          title: "Klotok",
+          date: "08 Juli 2026",
+          description: "Kenangan dari waktu kita di Klotok.",
+          files: ["Klotok 1.JPG", "Klotok 2.JPG"],
+        },
+        {
+          key: "floor",
+          title: "Floor",
+          date: "15 Juli 2026",
+          description: "Kenangan kita yang tersimpan di foto-foto Floor.",
+          files: ["Floor 1.JPG", "Floor 2.JPG", "Floor 3.JPG"],
+        },
+        {
+          key: "pantai",
+          title: "Pantai",
+          date: "18 Juli 2026",
+          description: "Momen-momen kita menikmati suasana pantai bersama.",
+          files: [
+            "Pantai 1.JPG",
+            "Pantai 2.JPG",
+            "Pantai 3.JPG",
+            "Pantai 4.JPG",
+          ],
+        },
+        {
+          key: "bromo",
+          title: "Bromo",
+          date: "27 Juli 2026",
+          description: "Potongan kenangan perjalanan kita di Bromo.",
+          files: [
+            "Bromo 1.JPG",
+            "Bromo 2.JPG",
+            "Bromo 3.JPG",
+            "Bromo 4.JPG",
+            "Bromo 5.JPG",
+            "Bromo 6.JPG",
+            "Bromo 7.JPEG",
+            "Bromo 8.JPG",
+          ],
+        },
+        {
+          key: "jadian",
+          title: "Jadian",
           date: "03 Agustus 2026",
           description:
-            "Satu tanggal yang akan selalu punya tempat spesial. Inilah awal dari cerita yang ingin terus kita tulis bersama.",
-          photos: [
-            { src: "assets/memories/awal-1.jpg", caption: "The beginning" },
-            { src: "assets/memories/awal-2.jpg", caption: "A lovely moment" },
-            { src: "assets/memories/awal-3.jpg", caption: "That day ♡" },
-            { src: "assets/memories/awal-4.jpg", caption: "One to remember" },
+            "Kenangan dari awal hubungan kita. Setiap foto punya cerita yang ingin terus kuingat.",
+          files: [
+            "Jadian 1.JPG",
+            "Jadian 2.JPG",
+            "Jadian 3.JPG",
+            "Jadian 4.JPG",
+            "Jadian 5.JPG",
           ],
         },
-        moments: {
-          title: "Our ordinary days",
-          date: "A collection of little moments",
-          description:
-            "Hal-hal sederhana yang mungkin terlihat biasa, tetapi selalu berhasil menjadi kenangan yang istimewa.",
-          photos: [
-            {
-              src: "assets/memories/momen-1.jpg",
-              caption: "A little adventure",
-            },
-            { src: "assets/memories/momen-2.jpg", caption: "Just us" },
-            { src: "assets/memories/momen-3.jpg", caption: "Random happiness" },
-            { src: "assets/memories/momen-4.jpg", caption: "My favorite day" },
+        {
+          key: "solo",
+          title: "Solo",
+          date: "14 September 2026",
+          description: "Momen perjalanan kita di Solo yang ingin kusimpan.",
+          files: [
+            "Solo 1.JPG",
+            "Solo2.JPG",
+            "Solo 3.JPG",
+            "Solo 4.JPG",
+            "Solo 5.JPG",
+            "Solo 6.JPG",
+            "Solo 7.JPG",
           ],
         },
-        today: {
-          title: "Still choosing you",
-          date: "Today & always",
-          description:
-            "Setiap foto menyimpan cerita. Dan semoga masih banyak halaman baru yang bisa kita isi bersama.",
-          photos: [
-            { src: "assets/memories/sekarang-1.jpg", caption: "Us, today" },
-            {
-              src: "assets/memories/sekarang-2.jpg",
-              caption: "Keep this moment",
-            },
-            {
-              src: "assets/memories/sekarang-3.jpg",
-              caption: "A happy memory",
-            },
-            {
-              src: "assets/memories/sekarang-4.jpg",
-              caption: "To more memories ♡",
-            },
-          ],
+      ];
+
+      const chapterTwoPhotos = [
+        {
+          src: "assets/memories/Bromo%207.JPEG",
+          alt: "Kenangan di Bromo",
         },
-      };
+        {
+          src: "assets/memories/Bromo%208.JPG",
+          alt: "Kenangan di Bromo",
+        },
+        {
+          src: "assets/memories/Solo%207.JPG",
+          alt: "Kenangan di Solo",
+        },
+        {
+          src: "assets/memories/Pantai%203.JPG",
+          alt: "Kenangan di pantai",
+        },
+      ];
+
+      const chapterTwoGallery = document.getElementById("chapterTwoGallery");
+      chapterTwoPhotos.forEach((photo) => {
+        const button = document.createElement("button");
+        button.className = "photo";
+        button.type = "button";
+        button.setAttribute("aria-label", `Perbesar ${photo.alt}`);
+        button.addEventListener("click", () =>
+          openPhotoLightbox(photo, button)
+        );
+        const image = document.createElement("img");
+        image.src = photo.src;
+        image.alt = photo.alt;
+        image.loading = "lazy";
+        button.appendChild(image);
+        chapterTwoGallery.appendChild(button);
+      });
+
+      chapterOnePhotoGroups.forEach((group) => {
+        const displayDate =
+          group.key === "jadian" ? group.date : `Sekitar ${group.date}`;
+        memorySets[group.key] = {
+          title: group.title,
+          date: displayDate,
+          description: group.description,
+          photos: group.files.map((file) => ({
+            src: `assets/memories/${encodeURIComponent(file)}`,
+            alt: `Foto kenangan ${group.title}`,
+            caption: "",
+          })),
+        };
+        const moment = document.createElement("article");
+        moment.className = "moment";
+        moment.setAttribute("role", "button");
+        moment.tabIndex = 0;
+        moment.dataset.memory = group.key;
+        moment.setAttribute("aria-label", `Buka kenangan ${group.title}`);
+        const dot = document.createElement("i");
+        dot.className = "dot";
+        const date = document.createElement("span");
+        date.className = "date-trigger";
+        date.textContent = displayDate;
+        const title = document.createElement("h3");
+        title.textContent = group.title;
+        const description = document.createElement("p");
+        description.textContent = group.description;
+        moment.append(dot, date, title, description);
+        document.querySelector(".timeline").appendChild(moment);
+      });
 
       const memoryPanel = document.getElementById("memoryPanel");
       const memoryGrid = document.getElementById("memoryGrid");
@@ -2687,28 +2727,101 @@
       const photoLightboxImage = document.getElementById("photoLightboxImage");
       let activePolaroid = null;
 
-      const polaroidPhotos = [
-        { src: "assets/memories/awal-1.jpg", caption: "The beginning" },
-        { src: "assets/memories/awal-2.jpg", caption: "A lovely moment" },
-        { src: "assets/memories/awal-3.jpg", caption: "That day ♡" },
-        { src: "assets/memories/awal-4.jpg", caption: "One to remember" },
-        { src: "assets/memories/momen-1.jpg", caption: "A little adventure" },
-        { src: "assets/memories/momen-2.jpg", caption: "Just us" },
-        { src: "assets/memories/momen-3.jpg", caption: "Random happiness" },
-        { src: "assets/memories/momen-4.jpg", caption: "My favorite day" },
-        { src: "assets/memories/sekarang-1.jpg", caption: "Us, today" },
-        { src: "assets/memories/sekarang-2.jpg", caption: "Keep this moment" },
-        { src: "assets/memories/sekarang-3.jpg", caption: "A happy memory" },
-        { src: "assets/memories/sekarang-4.jpg", caption: "To more memories ♡" },
-      ];
+      const polaroidPhotos = chapterOnePhotoGroups.flatMap((group) =>
+        group.files.map((file) => ({
+          src: `assets/memories/${encodeURIComponent(file)}`,
+          alt: `Foto kenangan ${group.title}`,
+          caption: group.title,
+        }))
+      );
+      let dreamResponsesRequested = false;
+
+      function loadDreamResponses() {
+        if (dreamResponsesRequested) return;
+        dreamResponsesRequested = true;
+        const status = document.getElementById("dreamResponsesStatus");
+        status.textContent = "Memuat jawaban dari Google Sheets...";
+        const script = document.createElement("script");
+        const separator = GOOGLE_SHEETS_WEB_APP_URL.includes("?") ? "&" : "?";
+        script.src =
+          `${GOOGLE_SHEETS_WEB_APP_URL}${separator}` +
+          `callback=receiveDreamResponses&_=${Date.now()}`;
+        script.onerror = () => {
+          dreamResponsesRequested = false;
+          status.textContent =
+            "Jawaban belum dapat dimuat. Periksa deployment Google Apps Script dan coba buka kejutan lagi.";
+          script.remove();
+          console.error("Could not load Level 6 responses from Google Sheets.");
+        };
+        window.receiveDreamResponses = (response) => {
+          script.remove();
+          if (
+            !response ||
+            response.success !== true ||
+            !Array.isArray(response.headers) ||
+            !Array.isArray(response.rows) ||
+            response.rows.some((row) => !Array.isArray(row))
+          ) {
+            dreamResponsesRequested = false;
+            status.textContent =
+              "Format jawaban dari Google Sheets tidak dapat dibaca.";
+            console.error("Google Sheets returned an invalid response.");
+            return;
+          }
+          renderDreamResponses(response);
+        };
+        document.head.appendChild(script);
+      }
+
+      function renderDreamResponses(response) {
+        const status = document.getElementById("dreamResponsesStatus");
+        const list = document.getElementById("dreamResponseList");
+        list.replaceChildren();
+        if (response.rows.length === 0) {
+          status.textContent =
+            "Belum ada jawaban yang dikirim dari tantangan impian dan harapan.";
+          return;
+        }
+
+        const headers = response.headers;
+        response.rows.forEach((row, rowIndex) => {
+          const card = document.createElement("article");
+          card.className = "dream-response-card";
+          const heading = document.createElement("h4");
+          const submittedAt = new Date(row[0]);
+          heading.textContent = Number.isNaN(submittedAt.getTime())
+            ? `Jawaban ${rowIndex + 1}`
+            : new Intl.DateTimeFormat("id-ID", {
+                dateStyle: "long",
+                timeStyle: "short",
+              }).format(submittedAt);
+          const answers = document.createElement("dl");
+          answers.className = "dream-response-answers";
+          row.slice(1).forEach((value, valueIndex) => {
+            if (value === null || String(value).trim() === "") return;
+            const item = document.createElement("div");
+            item.className = "dream-response-answer";
+            const term = document.createElement("dt");
+            term.textContent = headers[valueIndex + 1] || "Jawaban";
+            const definition = document.createElement("dd");
+            definition.textContent = String(value);
+            item.append(term, definition);
+            answers.appendChild(item);
+          });
+          card.append(heading, answers);
+          list.appendChild(card);
+        });
+        status.textContent = `${response.rows.length} jawaban tersimpan dari tantangan Level 6.`;
+      }
 
       function openPhotoLightbox(photo, button) {
         activePolaroid = button;
         photoLightbox.classList.remove("image-missing");
         photoLightboxImage.src = photo.src;
-        photoLightboxImage.alt = photo.caption;
-        document.getElementById("photoLightboxCaption").textContent =
-          photo.caption;
+        photoLightboxImage.alt = photo.alt || photo.caption;
+        const caption = document.getElementById("photoLightboxCaption");
+        caption.textContent = photo.caption || "";
+        caption.hidden = !photo.caption;
         document.getElementById("photoLightboxPlaceholder").textContent =
           `Tambahkan ${photo.src.split("/").pop()} di folder assets/memories`;
         photoLightbox.showModal();
@@ -2738,10 +2851,7 @@
         placeholder.textContent = `♡\nTambahkan ${photo.src.split("/").pop()}`;
         photoFrame.append(image, placeholder);
 
-        const caption = document.createElement("span");
-        caption.className = "polaroid-caption";
-        caption.textContent = photo.caption;
-        button.append(photoFrame, caption);
+        button.append(photoFrame);
         button.addEventListener("click", () =>
           openPhotoLightbox(photo, button)
         );
@@ -2775,12 +2885,15 @@
           memory.description;
         memoryGrid.innerHTML = "";
 
-        memory.photos.forEach((photo) => {
+        memory.photos.forEach((photo, index) => {
           const figure = document.createElement("figure");
           figure.className = "memory-photo";
           figure.tabIndex = 0;
           figure.setAttribute("role", "button");
-          figure.setAttribute("aria-label", `Perbesar foto: ${photo.caption}`);
+          figure.setAttribute(
+            "aria-label",
+            `Perbesar foto ${index + 1} dari ${memory.title}`
+          );
           figure.addEventListener("click", () =>
             openPhotoLightbox(photo, figure)
           );
@@ -2792,7 +2905,7 @@
           });
           const img = document.createElement("img");
           img.src = photo.src;
-          img.alt = photo.caption;
+          img.alt = photo.alt || photo.caption || `Foto ${index + 1} ${memory.title}`;
           img.loading = "lazy";
           img.onerror = () => {
             figure.classList.add("no-image");
@@ -2800,9 +2913,7 @@
               .split("/")
               .pop()} di folder assets/memories</small></div>`;
           };
-          const caption = document.createElement("figcaption");
-          caption.textContent = photo.caption;
-          figure.append(img, caption);
+          figure.appendChild(img);
           memoryGrid.appendChild(figure);
         });
 

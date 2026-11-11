@@ -65,3 +65,46 @@ function doPost(event) {
     JSON.stringify({ success: true })
   ).setMimeType(ContentService.MimeType.JSON);
 }
+
+function doGet(event) {
+  const callback = event && event.parameter && event.parameter.callback;
+  if (callback !== "receiveDreamResponses") {
+    throw new Error("Unsupported callback.");
+  }
+
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  if (!spreadsheet) {
+    throw new Error("This script must be bound to the destination spreadsheet.");
+  }
+
+  const sheets = ["Jawaban Harapan", "Jawaban Harapan (Lengkap)"]
+    .map((name) => spreadsheet.getSheetByName(name))
+    .filter(Boolean);
+  const submissions = sheets
+    .map((sheet) => sheet.getDataRange().getValues())
+    .filter((values) => values.length > 1);
+  const headers = [
+    "Waktu",
+    ...new Set(
+      submissions.flatMap((values) => values[0].slice(1).map(String))
+    ),
+  ];
+  const rows = submissions.flatMap((values) => {
+    const sourceHeaders = values[0].map(String);
+    return values.slice(1).map((sourceRow) => {
+      const sourceValues = sourceRow.map((value) =>
+        value instanceof Date ? value.toISOString() : value
+      );
+      return headers.map((header) => {
+        const index = sourceHeaders.indexOf(header);
+        return index < 0 ? "" : sourceValues[index];
+      });
+    });
+  });
+  rows.sort((left, right) => String(right[0]).localeCompare(String(left[0])));
+  const result = { success: true, headers, rows };
+
+  return ContentService.createTextOutput(
+    `${callback}(${JSON.stringify(result)});`
+  ).setMimeType(ContentService.MimeType.JAVASCRIPT);
+}

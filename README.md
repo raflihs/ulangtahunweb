@@ -8,7 +8,7 @@ Halaman kejutan ulang tahun interaktif yang dibuat khusus untuk Novita. Proyek i
 - **Musik latar acak** yang mulai setelah amplop dibuka, lanjut ke lagu acak lain setelah lagu selesai, dan diputar pada volume 50%.
 - **Cerita dan timeline** dengan popup untuk membuka detail kenangan.
 - **Galeri foto** bergaya Polaroid, termasuk tampilan foto yang dapat diperbesar.
-- **Mini game tujuh tantangan** dengan urutan pengerjaan bebas untuk tantangan 1–6, progres jawaban, dan tantangan 7 yang terbuka setelah enam tantangan pertama selesai.
+- **Mini game enam tantangan** dengan urutan pengerjaan bebas untuk tantangan 1–5, progres jawaban, dan tantangan 6 yang terbuka setelah lima tantangan lainnya selesai.
 - **Form impian dan harapan** dengan pertanyaan reflektif dan satu kolom bebas opsional; jawaban dikirim ke Google Sheets melalui Google Apps Script.
 - **Hadiah kejutan akhir** setelah semua tantangan selesai.
 - **Tampilan responsif** untuk desktop dan ponsel.
