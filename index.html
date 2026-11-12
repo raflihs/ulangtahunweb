@@ -1390,7 +1390,7 @@
     <div class="stars"></div>
     <canvas id="confetti"></canvas>
     <nav>
-      <div class="brand">for my favorite ♡</div>
+      <div class="brand">for my favorite, Novita ♡</div>
       <div class="links">
         <a href="#story">Our Story</a><a href="#memories">Memories</a
         ><a href="#game">Mini Game</a>
@@ -2100,7 +2100,7 @@
           prompt:
             "Apa makanan yang selalu aku pesan kalau kita bingung mau makan apa?",
           choices: ["Pecel Lele", "Olive", "Bakso urat"],
-          answers: ["Bakso urat"],
+          answers: ["Pecel Lele", "Olive"],
         },
         {
           prompt:
@@ -2137,17 +2137,17 @@
         {
           prompt: "Kalau liburan, mana yang lebih aku pilih?",
           choices: ["Pantai", "Gunung"],
-          answer: "Gunung",
+          answers: ["Pantai", "Gunung"],
         },
         {
           prompt: "Minuman mana yang jadi favoritku?",
           choices: ["Kopi", "Matcha"],
-          answer: "Kopi",
+          answers: ["Matcha"],
         },
         {
           prompt: "Kalau mau nonton bareng, aku lebih pilih...",
           choices: ["Bioskop", "Netflix di rumah"],
-          answer: "Netflix di rumah",
+          answers: ["Bioskop", "Netflix di rumah"],
         },
       ];
       const totalAnswerCount =
@@ -2493,10 +2493,11 @@
       function checkThisOrThatAnswer(answer) {
         const question = thisOrThatQuestions[thisOrThatQuestionIndex];
         const feedback = document.getElementById("thisOrThatFeedback");
-        if (
-          normalizeGameAnswer(answer) !==
-          normalizeGameAnswer(question.answer)
-        ) {
+        const isCorrect = question.answers.some(
+          (correctAnswer) =>
+            normalizeGameAnswer(answer) === normalizeGameAnswer(correctAnswer)
+        );
+        if (!isCorrect) {
           feedback.textContent = "Hmm, bukan itu favoritku. Coba yang lain ♡";
           return;
         }
